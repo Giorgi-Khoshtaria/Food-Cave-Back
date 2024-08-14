@@ -46,16 +46,6 @@ require("./itemsDetails.cjs");
 const user = mongoose.model("registration");
 const Item = mongoose.model("Items");
 
-// Handle root URL
-app.get("/", (req, res) => {
-  res.send("Welcome to the backend API!");
-});
-
-// Handle /api/hello endpoint
-app.get("/api/hello", (req, res) => {
-  res.json({ message: "Hello, World!" });
-});
-
 app.post("/SignUp", async (req, res) => {
   console.log("Received registration request:", req.body);
   const { email, password, phone, isAdmin } = req.body;
