@@ -15,6 +15,7 @@ app.use(
   cors({
     origin: fonturl,
     credentials: true,
+    allowedHeaders: "Content-Type,Authorization",
   })
 );
 app.options(
@@ -22,6 +23,7 @@ app.options(
   cors({
     origin: fonturl,
     credentials: true,
+    allowedHeaders: "Content-Type,Authorization",
   })
 );
 // Increase max header size
