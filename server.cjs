@@ -12,6 +12,13 @@ require("dotenv").config();
 
 // app.use(express.urlencoded({ extended: true }));
 app.use(cors({ origin: true, credentials: true }));
+app.options(
+  "*",
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 // Increase max header size
 app.use(express.json({ limit: "1mb" }));
 app.use(express.urlencoded({ limit: "1mb", extended: true }));
