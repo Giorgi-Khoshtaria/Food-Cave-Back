@@ -11,7 +11,13 @@ const path = require("path");
 require("dotenv").config();
 const fonturl = process.env.REACT_APP_FONT_URL;
 // app.use(express.urlencoded({ extended: true }));
-app.use(cors({ origin: fonturl, credentials: true }));
+app.use(
+  cors({
+    origin:
+      "https://food-cave-front-git-main-giorgis-projects-02630e53.vercel.app",
+    credentials: true,
+  })
+);
 app.options(
   "*",
   cors({
