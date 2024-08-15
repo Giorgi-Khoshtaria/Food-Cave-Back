@@ -12,9 +12,9 @@ require("dotenv").config();
 const fonturl = process.env.REACT_APP_FONT_URL;
 // app.use(express.urlencoded({ extended: true }));
 app.use(
-  cors({ origin: [fonturl], credentials: true, methods: ["POST", "GET"] })
+  cors({ origin: [`${fonturl}`], credentials: true, methods: ["POST", "GET"] })
 );
-
+console.log(fonturl);
 // Increase max header size
 app.use(express.json({ limit: "1mb" }));
 app.use(express.urlencoded({ limit: "1mb", extended: true }));
