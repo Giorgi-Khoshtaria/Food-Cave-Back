@@ -13,7 +13,7 @@ const fonturl = process.env.REACT_APP_FONT_URL;
 // app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: "food-cave-front.vercel.app",
+    origin: fonturl,
     credentials: true,
     methods: ["POST", "GET"],
   })
