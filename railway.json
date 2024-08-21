@@ -6,6 +6,6 @@
     }
   ],
   "deploy": {
-    "startCommand": "nodemon server.cjs"
+    "startCommand": "node server.cjs"
   }
 }
