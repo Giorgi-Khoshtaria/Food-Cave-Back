@@ -9,11 +9,11 @@ app.use(express.json());
 const path = require("path");
 
 require("dotenv").config();
-const fonturl = process.env.REACT_APP_FONT_URL;
+// const fonturl = process.env.REACT_APP_FONT_URL;
 // app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: fonturl,
+    origin: true,
     credentials: true,
     allowedHeaders: "Content-Type,Authorization",
   })
@@ -21,7 +21,7 @@ app.use(
 app.options(
   "*",
   cors({
-    origin: fonturl,
+    origin: true,
     credentials: true,
     allowedHeaders: "Content-Type,Authorization",
   })
