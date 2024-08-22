@@ -9,20 +9,13 @@ app.use(express.json());
 const path = require("path");
 
 require("dotenv").config();
-const fonturl = process.env.REACT_APP_FONT_URL;
-console.log(fonturl);
+// const fonturl = process.env.REACT_APP_FONT_URL;
 // app.use(express.urlencoded({ extended: true }));
-app.use(
-  cors({
-    origin: "https://food-cave-front.vercel.app", // Allow this origin
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Allow these methods
-    allowedHeaders: ["Content-Type", "Authorization"], // Allow these headers
-  })
-);
+app.use(cors());
 // app.options(
 //   "*",
 //   cors({
-//     origin: true,
+//     origin: fonturl,
 //     credentials: true,
 //     allowedHeaders: "Content-Type,Authorization",
 //   })
