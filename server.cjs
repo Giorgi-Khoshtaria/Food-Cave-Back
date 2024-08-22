@@ -14,7 +14,7 @@ console.log(fonturl);
 // app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: `${fonturl}`, // Allow this origin
+    origin: "https://food-cave-front.vercel.app", // Allow this origin
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Allow these methods
     allowedHeaders: ["Content-Type", "Authorization"], // Allow these headers
   })
