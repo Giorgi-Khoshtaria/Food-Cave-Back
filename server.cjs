@@ -218,7 +218,7 @@ app.get("/get-profile-data/:userId", async (req, res) => {
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "uploads/");
+    cb(null, "/uploads");
   },
   filename: function (req, file, cb) {
     const ext = path.extname(file.originalname).toLowerCase();
@@ -264,7 +264,7 @@ app.post(
 /////////////////////////////////////////////////////
 const storage1 = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "uploads/");
+    cb(null, "/uploads");
   },
   filename: function (req, file, cb) {
     const ext = path.extname(file.originalname).toLowerCase();
