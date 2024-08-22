@@ -263,11 +263,18 @@ app.post(
 
 /////////////////////////////////////////////////////
 
-const uploadDir = path.join(__dirname, "uploads");
-app.use("/uploads", express.static(uploadDir));
+const sharedUploadDir = path.join(
+  __dirname,
+  "..",
+  "Food-Cave-front",
+  "public",
+  "uploads"
+);
+app.use("/uploads", express.static(sharedUploadDir));
+
 const storage1 = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, uploadDir);
+    cb(null, sharedUploadDir);
   },
   filename: function (req, file, cb) {
     const ext = path.extname(file.originalname).toLowerCase();
