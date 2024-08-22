@@ -14,7 +14,7 @@ console.log(fonturl);
 // app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: fonturl, // Allow this origin
+    origin: `${fonturl}`, // Allow this origin
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Allow these methods
     allowedHeaders: ["Content-Type", "Authorization"], // Allow these headers
   })
@@ -346,7 +346,7 @@ app.get("/get-item/:id", async (req, res) => {
   }
 });
 /////////////////////////////////////////
-app.listen(5000, () => {
+app.listen(3000, () => {
   console.log("server started");
 });
 
