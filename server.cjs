@@ -11,8 +11,9 @@ const path = require("path");
 require("dotenv").config();
 // const fonturl = process.env.REACT_APP_FONT_URL;
 // app.use(express.urlencoded({ extended: true }));
+const frontUrl = process.env.REACT_APP_FONT_URL;
 const corsOptions = {
-  origin: "https://food-cave-front.vercel.app",
+  origin: frontUrl,
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
   optionsSuccessStatus: 204,
