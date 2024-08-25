@@ -263,13 +263,7 @@ app.post(
 
 /////////////////////////////////////////////////////
 
-const sharedUploadDir = path.join(
-  __dirname,
-  "..",
-  "Food-Cave-front",
-  "public",
-  "uploads"
-);
+const sharedUploadDir = path.join(__dirname, "uploads");
 app.use("/uploads", express.static(sharedUploadDir));
 
 const storage1 = multer.diskStorage({
@@ -302,22 +296,47 @@ app.post(
       // Extract form data including courseType
       const { name, price, ingredients, descriptions, courseType } = req.body;
 
-      // Extract uploaded files
-      const mainImage = req.files["mainImage"][0].filename;
-      const secondaryImage = req.files["secondaryImage"][0].filename;
-      const tertiaryImage = req.files["tertiaryImage"][0].filename;
+      // Extract uploaded files and encode them to base64
+      const mainImagePath = path.join(
+        sharedUploadDir,
+        req.files["mainImage"][0].filename
+      );
+      const secondaryImagePath = path.join(
+        sharedUploadDir,
+        req.files["secondaryImage"][0].filename
+      );
+      const tertiaryImagePath = path.join(
+        sharedUploadDir,
+        req.files["tertiaryImage"][0].filename
+      );
 
-      // Create new item document with courseType
-      const newItem = await Item.create({
+      const mainImageBase64 = fs.readFileSync(mainImagePath, {
+        encoding: "base64",
+      });
+      const secondaryImageBase64 = fs.readFileSync(secondaryImagePath, {
+        encoding: "base64",
+      });
+      const tertiaryImageBase64 = fs.readFileSync(tertiaryImagePath, {
+        encoding: "base64",
+      });
+
+      // Create new item document with base64 images
+      const newItem = {
         name,
         price,
         ingredients,
         descriptions,
-        mainImage,
-        secondaryImage,
-        tertiaryImage,
+        mainImage: `data:image/${path
+          .extname(mainImagePath)
+          .slice(1)};base64,${mainImageBase64}`,
+        secondaryImage: `data:image/${path
+          .extname(secondaryImagePath)
+          .slice(1)};base64,${secondaryImageBase64}`,
+        tertiaryImage: `data:image/${path
+          .extname(tertiaryImagePath)
+          .slice(1)};base64,${tertiaryImageBase64}`,
         courseType,
-      });
+      };
 
       // Respond with success message
       res.status(201).json({ message: "Item added successfully", newItem });
