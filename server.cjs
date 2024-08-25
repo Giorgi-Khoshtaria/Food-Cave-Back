@@ -263,6 +263,7 @@ app.post(
 
 /////////////////////////////////////////////////////
 
+// Path to store images temporarily
 const sharedUploadDir = path.join(__dirname, "uploads");
 app.use("/uploads", express.static(sharedUploadDir));
 
@@ -321,7 +322,7 @@ app.post(
       });
 
       // Create new item document with base64 images
-      const newItem = {
+      const newItem = new Item({
         name,
         price,
         ingredients,
@@ -336,7 +337,10 @@ app.post(
           .extname(tertiaryImagePath)
           .slice(1)};base64,${tertiaryImageBase64}`,
         courseType,
-      };
+      });
+
+      // Save the item to the database
+      await newItem.save();
 
       // Respond with success message
       res.status(201).json({ message: "Item added successfully", newItem });
@@ -347,7 +351,6 @@ app.post(
     }
   }
 );
-
 ///////////////////////////
 app.get("/get-items", async (req, res) => {
   try {
